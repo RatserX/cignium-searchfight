@@ -9,7 +9,7 @@ namespace Cignium.Searchfight.Core.Extension
     {
         public static double ToDouble(this string input)
         {
-            var regex = new Regex("[^0-9].");
+            var regex = new Regex("[^0-9.]");
             var s = regex.Replace(input, "");
 
             return double.Parse(s);
@@ -21,6 +21,21 @@ namespace Cignium.Searchfight.Core.Extension
             var s = regex.Replace(input, "");
 
             return long.Parse(s);
+        }
+        public static bool TryToDouble(this string input, out double result)
+        {
+            var regex = new Regex("[^0-9.]");
+            var s = regex.Replace(input, "");
+
+            return double.TryParse(s, out result);
+        }
+
+        public static bool TryToLong(this string input, out long result)
+        {
+            var regex = new Regex("[^0-9]");
+            var s = regex.Replace(input, "");
+
+            return long.TryParse(s, out result);
         }
 
         public static Group RegexGroup(this string input, string pattern)

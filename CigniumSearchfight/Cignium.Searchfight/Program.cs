@@ -1,4 +1,6 @@
-﻿using Cignium.Searchfight.Website.SearchEngine.Google;
+﻿using Cignium.Searchfight.Website.SearchEngine.Bing;
+using Cignium.Searchfight.Website.SearchEngine.Google;
+using Cignium.Searchfight.Website.SearchEngine.Yahoo;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -20,44 +22,72 @@ namespace Cignium.Searchfight
 
             try
             {
-                var consoleValue = "";
                 var winners = new Dictionary<string, Tuple<string, long>>();
+
+                var bingName = nameof(Bing);
                 var googleName = nameof(Google);
+                var yahooName = nameof(Yahoo);
 
                 for (var i = 0; i < searchValues.Length; i++)
                 {
                     var searchValue = searchValues[i];
 
-                    // Google
-                    var google = new Google();
-                    var resource = await google.GetResource(searchValue);
-                    var resultNumber = google.GetResultNumber(resource);
+                    Console.Write($"{searchValue}:");
 
-                    consoleValue += $"{searchValue}: ";
-                    consoleValue += $"Google: {resultNumber}";
+                    // Bing
+                    var bing = new Bing();
+                    var bingResource = await bing.GetResource(searchValue);
+                    var bingResultNumber = bing.GetResultNumber(bingResource);
 
-                    if (!winners.ContainsKey(googleName) || resultNumber > winners[googleName].Item2)
+                    Console.Write($" Bing: {bingResultNumber} ");
+
+                    if (!winners.ContainsKey(bingName) || bingResultNumber > winners[bingName].Item2)
                     {
-                        winners[googleName] = new Tuple<string, long>(searchValue, resultNumber);
+                        winners[bingName] = new Tuple<string, long>(searchValue, bingResultNumber);
                     }
 
-                    consoleValue += "\n\r";
+                    // Google
+                    var google = new Google();
+                    var googleResource = await google.GetResource(searchValue);
+                    var googleResultNumber = google.GetResultNumber(googleResource);
+
+                    Console.Write($" Google: {googleResultNumber} ");
+
+                    if (!winners.ContainsKey(googleName) || googleResultNumber > winners[googleName].Item2)
+                    {
+                        winners[googleName] = new Tuple<string, long>(searchValue, googleResultNumber);
+                    }
+
+                    // Yahoo
+                    var yahoo = new Yahoo();
+                    var yahooResource = await yahoo.GetResource(searchValue);
+                    var yahooResultNumber = yahoo.GetResultNumber(yahooResource);
+
+                    Console.Write($" Yahoo: {yahooResultNumber} ");
+
+                    if (!winners.ContainsKey(yahooName) || yahooResultNumber > winners[yahooName].Item2)
+                    {
+                        winners[yahooName] = new Tuple<string, long>(searchValue, yahooResultNumber);
+                    }
+
+                    Console.Write("\r\n");
                 }
 
                 // Winner
-                consoleValue += $"Google winner: {winners[googleName].Item1}";
-
-                consoleValue += "\n\r";
-
-                Console.WriteLine(consoleValue);
+                Console.Write($"Bing winner: {winners[bingName].Item1}\r\n");
+                Console.Write($"Google winner: {winners[googleName].Item1}\r\n");
+                Console.Write($"Yahoo winner: {winners[yahooName].Item1}\r\n");
             }
             catch (Exception e)
             {
-                Console.WriteLine($"{e.InnerException?.StackTrace ?? e.StackTrace}\r\n{e.Message}");
+                Console.BackgroundColor = ConsoleColor.Red;
+
+                Console.WriteLine($"\r\n{e.InnerException?.StackTrace ?? e.StackTrace}\r\n{e.Message}");
+                Console.ResetColor();
             }
             finally
             {
-                Console.WriteLine("Press any key to continue...");
+                Console.WriteLine("\r\nPress any key to continue...");
                 Console.ReadKey();
             }
         }

@@ -12,7 +12,7 @@ namespace Cignium.Searchfight.Website.SearchEngine.Google
 {
     public class Google : BaseSearchEngine, IGoogle
     {
-        public Google() : base()
+        public Google()
         {
             website = new Core.Model.Website()
             {
@@ -28,13 +28,20 @@ namespace Cignium.Searchfight.Website.SearchEngine.Google
         public long GetResultNumber(string input, string pattern = ConstantHelpers.Website.Google.Resource.ResultNumber.REGEX_PATTERN)
         {
             var regexGroup = input.RegexGroup(pattern);
-            var index = ConstantHelpers.Website.Google.Resource.ResultNumber.SPLIT_INDEX;
-            var separator = ConstantHelpers.Website.Google.Resource.ResultNumber.SPLIT_SEPARATOR;
-            var resultNumber = regexGroup.Value.SplitValue(separator, index);
 
-            if (resultNumber != null)
+            if (regexGroup == null)
             {
-                return resultNumber.ToLong();
+                throw new Exception(ErrorHelper.GetRegexGroupEmptyError());
+            }
+
+            var valueSplit = regexGroup.Value.Split(ConstantHelpers.Website.Google.Resource.ResultNumber.SPLIT_SEPARATOR);
+
+            for (var i = 0; i < valueSplit.Length; i++)
+            {
+                if (valueSplit[i].TryToLong(out long result))
+                {
+                    return result;
+                }
             }
 
             return 0;
@@ -43,13 +50,14 @@ namespace Cignium.Searchfight.Website.SearchEngine.Google
         public TimeSpan GetResultTime(string input, string pattern = ConstantHelpers.Website.Google.Resource.ResultTime.REGEX_PATTERN)
         {
             var regexGroup = input.RegexGroup(pattern);
-            var index = ConstantHelpers.Website.Google.Resource.ResultTime.SPLIT_INDEX;
-            var separator = ConstantHelpers.Website.Google.Resource.ResultTime.SPLIT_SEPARATOR;
-            var resultTime = regexGroup.Value.SplitValue(separator, index);
+            var resultTimeSplit = regexGroup.Value.Split(ConstantHelpers.Website.Google.Resource.ResultTime.SPLIT_SEPARATOR);
 
-            if (resultTime != null)
+            for (var i = 0; i < resultTimeSplit.Length; i++)
             {
-                return TimeSpan.FromSeconds(resultTime.ToDouble());
+                if (resultTimeSplit[i].TryToDouble(out double result))
+                {
+                    return TimeSpan.FromSeconds(result);
+                }
             }
 
             return TimeSpan.FromSeconds(0);

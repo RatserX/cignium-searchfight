@@ -11,6 +11,11 @@ namespace Cignium.Searchfight.Core.Helper
             public const bool USE_API = false;
         }
 
+        public static class Error
+        {
+            public const string REGEX_GROUP_EMPTY = "Regex group is empty";
+        }
+
         public static class WebRequest
         {
             public static class SearchEngine
@@ -36,7 +41,7 @@ namespace Cignium.Searchfight.Core.Helper
                 {
                     public static class ResultNumber
                     {
-                        public const string REGEX_PATTERN = @"(?:<span)(?:[^>]*)(?:class=\""sb_count\"")(?:[^>]*)(?:>)(.*)(?:<span>)";
+                        public const string REGEX_PATTERN = @"(?:<span)(?:[^>]*)(?:class=\""sb_count\"")(?:[^>]*)(?:>)(.*?)(?:</span>)";
                         public const int SPLIT_INDEX = 2;
                         public const string SPLIT_SEPARATOR = " ";
                     }
@@ -65,15 +70,13 @@ namespace Cignium.Searchfight.Core.Helper
                 {
                     public static class ResultNumber
                     {
-                        public const string REGEX_PATTERN = @"(?:<div)(?:[^>]*)(?:id=\""resultStats\"")(?:[^>]*)(?:>)(.*)(?:<nobr>)";
-                        public const int SPLIT_INDEX = 2;
+                        public const string REGEX_PATTERN = @"(?:<div)(?:[^>]*)(?:id=\""resultStats\"")(?:[^>]*)(?:>)(.*?)(?:<nobr>)";
                         public const string SPLIT_SEPARATOR = " ";
                     }
 
                     public static class ResultTime
                     {
-                        public const string REGEX_PATTERN = @"(?:<div)(?:[^>]*)(?:id=\""resultStats\"")(?:[^>]*)(?:>)(?:.*)(?:<nobr>)(.*)(?:</nobr>)";
-                        public const int SPLIT_INDEX = 1;
+                        public const string REGEX_PATTERN = @"(?:<div)(?:[^>]*)(?:id=\""resultStats\"")(?:[^>]*)(?:>)(?:.*)(?:<nobr>)(.*?)(?:</nobr>)";
                         public const string SPLIT_SEPARATOR = " ";
                     }
                 }
@@ -101,8 +104,7 @@ namespace Cignium.Searchfight.Core.Helper
                 {
                     public static class ResultNumber
                     {
-                        public const string REGEX_PATTERN = @"(?:<div)(?:[^>]*)(?:class=\""compPagination\"")(?:[^>]*)(?:id=\""yui)(?:[^>]*)(?:<span)(?:[^>]*)(?:id=\""yui)(?:[^>]*)(?:>)(.*)(?:<\/span>)";
-                        public const int SPLIT_INDEX = 2;
+                        public const string REGEX_PATTERN = @"(?:<div)(?:[^>]*)(?:class=\""compPagination\"")(?:.*?)(?:<span)(?:[^>]*)(?:>)(.*?)(?:</span>)";
                         public const string SPLIT_SEPARATOR = " ";
                     }
                 }
