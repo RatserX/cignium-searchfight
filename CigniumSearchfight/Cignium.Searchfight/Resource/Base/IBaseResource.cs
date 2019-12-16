@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Cignium.Searchfight.Website.Base
 {
-    interface IBaseWebsite
+    interface IBaseResource
     {
-        string GetWebsiteTitle();
-        string GetWebsiteUrl();
+        string GetRequestTitle();
+        string GetRequestUrl();
     }
 }

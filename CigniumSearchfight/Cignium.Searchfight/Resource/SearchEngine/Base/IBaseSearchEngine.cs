@@ -7,6 +7,6 @@ namespace Cignium.Searchfight.Website.SearchEngine.Base
 {
     interface IBaseSearchEngine
     {
-        Task<string> GetResource(string searchValue);
+        Task<string> GetDefaultResource(string searchValue);
     }
 }

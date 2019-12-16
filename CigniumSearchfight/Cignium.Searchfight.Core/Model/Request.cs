@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Cignium.Searchfight.Core.Model
 {
-    public class Website
+    public class Request
     {
         public string Title { get; set; }
 

@@ -6,24 +6,29 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Cignium.Searchfight.Website.SearchEngine.Bing
+namespace Cignium.Searchfight.Website.SearchEngine.Yahoo
 {
-    public class Bing : BaseSearchEngine, IBing
+    public class Yahoo : BaseSearchEngine, IYahoo
     {
-        public Bing()
+        public Yahoo()
         {
-            website = new Core.Model.Website()
+            request = new Request()
             {
-                Title = ConstantHelpers.Website.Bing.TITLE,
+                Title = ConstantHelpers.Website.Yahoo.TITLE,
                 Url = new Url()
                 {
-                    Host = ConstantHelpers.Website.Bing.Url.SearchEngine.HOST,
-                    PathQuery = ConstantHelpers.Website.Bing.Url.SearchEngine.PATH_QUERY
+                    Host = ConstantHelpers.Website.Yahoo.Url.SearchEngine.HOST,
+                    PathQuery = ConstantHelpers.Website.Yahoo.Url.SearchEngine.PATH_QUERY
                 }
             };
         }
 
-        public long GetResultNumber(string input, string pattern = ConstantHelpers.Website.Bing.Resource.ResultNumber.REGEX_PATTERN)
+        public Yahoo(Request request)
+        {
+            this.request = request;
+        }
+
+        public long GetResultNumber(string input, string pattern = ConstantHelpers.Website.Yahoo.Resource.ResultNumber.REGEX_PATTERN)
         {
             var regexGroup = input.RegexGroup(pattern);
 
@@ -32,7 +37,7 @@ namespace Cignium.Searchfight.Website.SearchEngine.Bing
                 throw new Exception(ErrorHelper.GetRegexGroupEmptyError());
             }
 
-            var valueSplit = regexGroup.Value.Split(ConstantHelpers.Website.Bing.Resource.ResultNumber.SPLIT_SEPARATOR);
+            var valueSplit = regexGroup.Value.Split(ConstantHelpers.Website.Yahoo.Resource.ResultNumber.SPLIT_SEPARATOR);
 
             for (var i = 0; i < valueSplit.Length; i++)
             {

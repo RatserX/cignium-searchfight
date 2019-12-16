@@ -12,20 +12,20 @@ using System.Threading.Tasks;
 
 namespace Cignium.Searchfight.Website.SearchEngine.Base
 {
-    public class BaseSearchEngine : BaseWebsite, IBaseSearchEngine
+    public class BaseSearchEngine : BaseResource, IBaseSearchEngine
     {
         public BaseSearchEngine()
         {
 
         }
 
-        public async Task<string> GetResource(string searchValue)
+        public async Task<string> GetDefaultResource(string searchValue)
         {
-            var requestUriString = $"{website.Url.Host}{website.Url.PathQuery}{searchValue}";
+            var requestUriString = $"{request.Url.Host}{request.Url.PathQuery}{searchValue}";
             var webRequest = (HttpWebRequest)WebRequest.Create(requestUriString);
-            webRequest.ContentType = ConstantHelpers.WebRequest.SearchEngine.CONTENT_TYPE;
-            webRequest.UserAgent = ConstantHelpers.WebRequest.SearchEngine.USER_AGENT;
-            webRequest.Timeout = ConstantHelpers.WebRequest.SearchEngine.TIMEOUT;
+            webRequest.ContentType = ConstantHelpers.WebRequest.Html.CONTENT_TYPE;
+            webRequest.UserAgent = ConstantHelpers.WebRequest.USER_AGENT;
+            webRequest.Timeout = ConstantHelpers.WebRequest.TIMEOUT;
 
             using (var response = await webRequest.GetResponseAsync())
             {
