@@ -15,15 +15,27 @@ namespace Cignium.Searchfight
         {
             //Console.WriteLine("Hello World!");
 
-            var searchValues = new string[]
-            {
-                ".net",
-                "java",
-                "java script"
-            };
+            string[] searchValues;
 
             try
             {
+#if DEBUG
+                searchValues = new string[]
+                {
+                    ".net",
+                    "java",
+                    "java script"
+                };
+#else
+                searchValues = args;
+#endif
+
+                if (searchValues.Length <= 0)
+                {
+                    Console.Write("\r\nUsage: Cignium.Searchfight.exe search_queries\r\n");
+                    return;
+                }
+
                 var winners = new Dictionary<string, Tuple<string, long>>();
 
                 var bingName = nameof(Bing);
@@ -60,7 +72,7 @@ namespace Cignium.Searchfight
                         bingResultNumber = bing.GetResultNumber(bingResource, ConstantHelpers.Api.Bing.Result.ResultNumber.REGEX_PATTERN);
                     }
 
-                    Console.Write($" Bing: {bingResultNumber} ");
+                    Console.Write($" Bing: {bingResultNumber}");
 
                     if (!winners.ContainsKey(bingName) || bingResultNumber > winners[bingName].Item2)
                     {
@@ -99,7 +111,7 @@ namespace Cignium.Searchfight
                         googleResultNumber = google.GetResultNumber(googleResource, ConstantHelpers.Api.Google.Result.ResultNumber.REGEX_PATTERN);
                     }*/
 
-                    Console.Write($" Google: {googleResultNumber} ");
+                    Console.Write($" Google: {googleResultNumber}");
 
                     if (!winners.ContainsKey(googleName) || googleResultNumber > winners[googleName].Item2)
                     {
@@ -135,7 +147,7 @@ namespace Cignium.Searchfight
                         yahooResultNumber = yahoo.GetResultNumber(yahooResource);
                     }*/
 
-                    Console.Write($" Yahoo: {yahooResultNumber} ");
+                    Console.Write($" Yahoo: {yahooResultNumber}");
 
                     if (!winners.ContainsKey(yahooName) || yahooResultNumber > winners[yahooName].Item2)
                     {

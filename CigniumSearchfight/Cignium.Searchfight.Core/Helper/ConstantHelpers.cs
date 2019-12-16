@@ -12,6 +12,7 @@ namespace Cignium.Searchfight.Core.Helper
             {
                 public static class Request
                 {
+                    // The API information should not be commited to the repository, but this is just an example.
                     public static class Default
                     {
                         public const string KEY1 = "f85510efc9fd4f0389c939d0b895f3a5";
@@ -53,6 +54,7 @@ namespace Cignium.Searchfight.Core.Helper
             {
                 public static class Request
                 {
+                    // The API information should not be commited to the repository, but this is just an example.
                     public const string KEY = "AIzaSyAUSWtPHqKVSpnr4cB04WMptqIO_5-0A5k";
                 }
 
@@ -78,15 +80,8 @@ namespace Cignium.Searchfight.Core.Helper
             {
                 public static class Request
                 {
+                    // The API information should not be commited to the repository, but this is just an example.
                     public const string KEY = "AIzaSyAUSWtPHqKVSpnr4cB04WMptqIO_5-0A5k";
-                }
-
-                public static class Result
-                {
-                    public static class ResultNumber
-                    {
-                        public const string REGEX_PATTERN = @"(?:\""totalEstimatedMatches\"": )(.*?)(?:,)";
-                    }
                 }
 
                 public static class Url
