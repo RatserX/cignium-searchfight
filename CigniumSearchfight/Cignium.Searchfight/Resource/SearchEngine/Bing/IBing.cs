@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Cignium.Searchfight.Website.SearchEngine.Bing
 {
     interface IBing
     {
-        long GetResultNumber(string input, string pattern);
+        Task<string> GetApiResource(string searchValue);
     }
 }

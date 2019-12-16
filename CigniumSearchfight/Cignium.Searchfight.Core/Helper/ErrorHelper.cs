@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Cignium.Searchfight.Core.Helper
 {
-    public static class ErrorHelper
+    public class ErrorHelper
     {
         private static string GetTypeHeader(Type type)
         {

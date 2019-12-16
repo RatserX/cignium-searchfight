@@ -6,6 +6,5 @@ namespace Cignium.Searchfight.Website.SearchEngine.Yahoo
 {
     interface IYahoo
     {
-        long GetResultNumber(string input, string pattern);
     }
 }

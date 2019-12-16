@@ -23,7 +23,7 @@ namespace Cignium.Searchfight.Website.SearchEngine.Base
         {
             var requestUriString = $"{request.Url.Host}{request.Url.PathQuery}{searchValue}";
             var webRequest = (HttpWebRequest)WebRequest.Create(requestUriString);
-            webRequest.ContentType = ConstantHelpers.WebRequest.Html.CONTENT_TYPE;
+            webRequest.ContentType = ConstantHelpers.WebRequest.Default.CONTENT_TYPE;
             webRequest.UserAgent = ConstantHelpers.WebRequest.USER_AGENT;
             webRequest.Timeout = ConstantHelpers.WebRequest.TIMEOUT;
 

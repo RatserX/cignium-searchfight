@@ -97,7 +97,7 @@ namespace Cignium.Searchfight.Core.Helper
 
         public static class General
         {
-            public const bool USE_API = true;
+            public const bool USE_API = false;
         }
 
         public static class Error
@@ -115,7 +115,7 @@ namespace Cignium.Searchfight.Core.Helper
                 public const string CONTENT_TYPE = "application/json";
             }
 
-            public static class Html
+            public static class Default
             {
                 public const string CONTENT_TYPE = "application/x-www-form-urlencoded";
             }
