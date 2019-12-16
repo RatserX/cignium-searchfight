@@ -22,15 +22,17 @@ Example:
 $ Cignium.Searchfight.exe .net java "java script"
 ```
 
-# Requirements
+# Installation & Execution
 
-+ Visual Studio 2017 or later
-+ .NET Core 2.2 SDK
+## Prerequisites
 
-# Configuration
++ (Optional) [Visual Studio 2017](https://visualstudio.microsoft.com/) - Microsoft Visual Studio is an integrated development environment from Microsoft. This project was developed using Visual Studio 2017.
++ [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download/dotnet-core/2.2) - NET Core is a free and open-source, managed computer software framework for Windows, Linux, and macOS operating systems. It is a cross-platform successor to .NET Framework.
+
+## Configuration
 
 Configurable options, such as the API Key and the request URLs, can be modified inside the `ConstantHelpers` class.
 
-# Deployment
+## Deployment
 
 Compile or publish the `Cignium.Searchfight` project and run the generated EXE file from the chosen deployment folder.
