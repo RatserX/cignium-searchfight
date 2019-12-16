@@ -1,6 +1,7 @@
 # Cignium Searchfight
 
-This a C# console application which lets users obtain the search results.
+This a C# console application which lets users obtain information from search results, such as the total results number. Currently, as it finishes processing the results, it displays the total results number for each search query inputted and which keyword had the most results.
+As of now, it retrieves data from the Bing, Google and Yahoo search engines.
 
 # Usage
 
