@@ -9,6 +9,13 @@ As of now, it retrieves data from the Bing, Google and Yahoo search engines.
 $ Cignium.Searchfight.exe search_queries
 ```
 
+Example:
+
+
+```sh
+$ Cignium.Searchfight.exe .net java "java script"
+```
+
 # Configuration
 
 Configurable options, such as the API Key and the request URLs, can be modified inside the ConstantHelpers.cs class.
