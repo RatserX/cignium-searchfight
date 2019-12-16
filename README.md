@@ -3,6 +3,12 @@
 This a C# console application which lets users obtain information from search results, such as the total results number. Currently, as it finishes processing the results, it displays the total results number for each search query inputted and which keyword had the most results.
 As of now, it retrieves data from the Bing, Google and Yahoo search engines.
 
+# Resources
+
+## Search Engines
+
+Add aditional search engines by creating a new folder, interface and class respectively in the SearchEngine folder. Make sure to inherit the `BaseSearchEngine` class. Aditional functionality can be added if needed. Be sure to check the search engines already included in this project for reference.
+
 # Usage
 
 ```sh
@@ -16,15 +22,14 @@ Example:
 $ Cignium.Searchfight.exe .net java "java script"
 ```
 
+# Requirements
+
++ Visual Studio 2017 or later
++ .NET Core 2.2 SDK
+
 # Configuration
 
 Configurable options, such as the API Key and the request URLs, can be modified inside the `ConstantHelpers` class.
-
-# Resources
-
-## Search Engines
-
-Add aditional search engines by creating a new folder, interface and class respectively in the SearchEngine folder. Make sure to inherit the `BaseSearchEngine` class. Aditional functionality can be added if needed. Be sure to check the search engines already included in this project for reference.
 
 # Deployment
 
