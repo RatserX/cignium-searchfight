@@ -18,7 +18,7 @@ $ Cignium.Searchfight.exe .net java "java script"
 
 # Configuration
 
-Configurable options, such as the API Key and the request URLs, can be modified inside the ConstantHelpers.cs class.
+Configurable options, such as the API Key and the request URLs, can be modified inside the `ConstantHelpers` class.
 
 # Resources
 
