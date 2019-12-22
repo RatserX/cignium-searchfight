@@ -23,9 +23,6 @@ namespace Cignium.Searchfight.Core.Extension
             return long.Parse(s);
         }
 
-
-
-
         public static bool TryToDouble(this string input, out double result)
         {
             var regex = new Regex("[^0-9.]");
@@ -42,14 +39,14 @@ namespace Cignium.Searchfight.Core.Extension
             return long.TryParse(s, out result);
         }
 
-        public static bool TryToLong(this string input, out long result, string pattern, string separator = " ")
+        public static bool TryToLong(this string input, out long result, string regexPattern, string splitSeparator = " ")
         {
-            var regexGroup = input.RegexGroup(pattern);
+            var regexGroup = input.RegexGroup(regexPattern);
             result = 0L;
 
             if (regexGroup != null)
             {
-                var valueSplit = regexGroup.Value.Split(separator);
+                var valueSplit = regexGroup.Value.Split(splitSeparator);
 
                 for (var i = 0; i < valueSplit.Length; i++)
                 {
@@ -63,14 +60,14 @@ namespace Cignium.Searchfight.Core.Extension
             return false;
         }
 
-        public static bool TryToSeconds(string input, out TimeSpan result, string pattern, string separator = " ")
+        public static bool TryToSeconds(this string input, out TimeSpan result, string regexPattern, string splitSeparator = " ")
         {
-            var regexGroup = input.RegexGroup(pattern);
+            var regexGroup = input.RegexGroup(regexPattern);
             result = TimeSpan.MinValue;
 
             if (regexGroup != null)
             {
-                var valueSplit = regexGroup.Value.Split(separator);
+                var valueSplit = regexGroup.Value.Split(splitSeparator);
 
                 for (var i = 0; i < valueSplit.Length; i++)
                 {
@@ -86,9 +83,9 @@ namespace Cignium.Searchfight.Core.Extension
             return false;
         }
 
-        public static Group RegexGroup(this string input, string pattern)
+        public static Group RegexGroup(this string input, string regexPattern)
         {
-            var regex = new Regex(pattern);
+            var regex = new Regex(regexPattern);
 
             if (regex.IsMatch(input))
             {
@@ -104,9 +101,9 @@ namespace Cignium.Searchfight.Core.Extension
             return null;
         }
 
-        public static string SplitValue(this string input, string separator, int index, StringSplitOptions stringSplitOptions = StringSplitOptions.None)
+        public static string SplitValue(this string input, string splitSeparator, int index, StringSplitOptions stringSplitOptions = StringSplitOptions.None)
         {
-            var inputSplit = input.Split(separator, stringSplitOptions);
+            var inputSplit = input.Split(splitSeparator, stringSplitOptions);
             var inputSplitValue = inputSplit[index];
 
             return inputSplitValue;

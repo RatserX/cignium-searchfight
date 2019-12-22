@@ -26,11 +26,12 @@ namespace Cignium.Searchfight.Core.Helper
                     }
                 }
 
-                public static class Result
+                public static class Response
                 {
                     public static class ResultNumber
                     {
                         public const string REGEX_PATTERN = @"(?:\""totalEstimatedMatches\"": )(.*?)(?:,)";
+                        public const string SPLIT_SEPARATOR = " ";
                     }
                 }
 
@@ -38,14 +39,14 @@ namespace Cignium.Searchfight.Core.Helper
                 {
                     public static class BingSearch
                     {
-                        public const string HOST = "https://api.cognitive.microsoft.com/";
-                        public const string PATH_QUERY = "bing/v5.0/search/?q=";
+                        public const string SEARCH = "https://api.cognitive.microsoft.com/bing/v5.0/search";
+                        //public const string PATH_QUERY = "bing/v5.0/search/?q=";
                     }
 
                     public static class BingSearchV7
                     {
-                        public const string HOST = "https://api.cognitive.microsoft.com/";
-                        public const string PATH_QUERY = "bing/v7.0/search/?q=";
+                        public const string SEARCH = "https://api.cognitive.microsoft.com/bing/v7.0/search";
+                        //public const string PATH_QUERY = "bing/v7.0/search/?q=";
                     }
                 }
             }
@@ -58,11 +59,12 @@ namespace Cignium.Searchfight.Core.Helper
                     public const string KEY = "AIzaSyAUSWtPHqKVSpnr4cB04WMptqIO_5-0A5k";
                 }
 
-                public static class Result
+                public static class Response
                 {
                     public static class ResultNumber
                     {
                         public const string REGEX_PATTERN = @"(?:\""totalResults\"": )(.*?)(?:,)";
+                        public const string SPLIT_SEPARATOR = " ";
                     }
                 }
 
@@ -70,8 +72,8 @@ namespace Cignium.Searchfight.Core.Helper
                 {
                     public static class CustomSearch
                     {
-                        public const string HOST = "https://www.googleapis.com/";
-                        public const string PATH_QUERY = "customsearch/v1?key=";
+                        public const string CUSTOMSEARCH = "https://www.googleapis.com/customsearch/v1";
+                        //public const string PATH_QUERY = "customsearch/v1?key=";
                     }
                 }
             }
@@ -81,15 +83,24 @@ namespace Cignium.Searchfight.Core.Helper
                 public static class Request
                 {
                     // The API information should not be commited to the repository, but this is just an example.
-                    public const string KEY = "AIzaSyAUSWtPHqKVSpnr4cB04WMptqIO_5-0A5k";
+                    public const string KEY = "";
+                }
+
+                public static class Response
+                {
+                    public static class ResultNumber
+                    {
+                        public const string REGEX_PATTERN = "";
+                        public const string SPLIT_SEPARATOR = " ";
+                    }
                 }
 
                 public static class Url
                 {
                     public static class WebSearchService
                     {
-                        public const string HOST = "http://search.yahooapis.com/";
-                        public const string PATH_QUERY = "WebSearchService/V1/webSearch?";
+                        public const string WEB_SEARCH = "http://search.yahooapis.com/WebSearchService/V1/webSearch";
+                        //public const string PATH_QUERY = "WebSearchService/V1/webSearch?";
                     }
                 }
             }
@@ -97,12 +108,18 @@ namespace Cignium.Searchfight.Core.Helper
 
         public static class General
         {
-            public const bool USE_API = false;
+            public const int PREFERRED_OPERATION = Operation.HTTP;
         }
 
         public static class Error
         {
             public const string REGEX_GROUP_EMPTY = "Regex group is empty";
+        }
+
+        public static class Operation
+        {
+            public const int API = 1;
+            public const int HTTP = 2;
         }
 
         public static class WebRequest
@@ -121,13 +138,11 @@ namespace Cignium.Searchfight.Core.Helper
             }
         }
 
-        public static class Website
+        public static class Http
         {
             public static class Bing
             {
-                public const string TITLE = "Bing";
-
-                public static class Resource
+                public static class Response
                 {
                     public static class ResultNumber
                     {
@@ -140,17 +155,14 @@ namespace Cignium.Searchfight.Core.Helper
                 {
                     public static class SearchEngine
                     {
-                        public const string HOST = "https://www.bing.com/";
-                        public const string PATH_QUERY = "search?q=";
+                        public const string SEARCH = "https://www.bing.com/search";
                     }
                 }
             }
 
             public static class Google
             {
-                public const string TITLE = "Google";
-
-                public static class Resource
+                public static class Response
                 {
                     public static class ResultNumber
                     {
@@ -169,17 +181,15 @@ namespace Cignium.Searchfight.Core.Helper
                 {
                     public static class SearchEngine
                     {
-                        public const string HOST = "https://www.google.com/";
-                        public const string PATH_QUERY = "search?q=";
+                        public const string SEARCH = "https://www.google.com/search";
+                        //public const string PATH_QUERY = "search?q=";
                     }
                 }
             }
 
             public static class Yahoo
             {
-                public const string TITLE = "Yahoo";
-
-                public static class Resource
+                public static class Response
                 {
                     public static class ResultNumber
                     {
@@ -192,8 +202,8 @@ namespace Cignium.Searchfight.Core.Helper
                 {
                     public static class SearchEngine
                     {
-                        public const string HOST = "https://search.yahoo.com/";
-                        public const string PATH_QUERY = "search?p=";
+                        public const string SEARCH = "https://search.yahoo.com/search";
+                        //public const string PATH_QUERY = "search?p=";
                     }
                 }
             }

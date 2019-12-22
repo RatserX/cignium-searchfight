@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Cignium.Searchfight.Core.Model
+namespace Cignium.Searchfight.Core.Model.Web
 {
     public class Request
     {
         public string Title { get; set; }
-
-        public Url Url { get; set; }
     }
 }
